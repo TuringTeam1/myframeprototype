@@ -1,4 +1,4 @@
-package com.huangtianci.myframeprototype.mvc.config;
+package com.huangtianci.myframeprototype.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
