@@ -2,6 +2,8 @@ package com.huangtianci.myframeprototype.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,14 +15,19 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.beans.PropertyVetoException;
 import java.util.Properties;
 
+/**
+ * @author Huang Tianci
+ * Hibernate配置类
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "com.huangtianci.myframeprototype.config" })
 @PropertySource(value = { "classpath:application.properties" })
 public class HibernateConfig {
+
+    static final Logger logger = LoggerFactory.getLogger(HibernateConfig.class);
 
     @Autowired
     Environment environment;
@@ -39,8 +46,8 @@ public class HibernateConfig {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
             dataSource.setDriverClass(environment.getRequiredProperty("jdbc.driverClassName"));
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Property jdbc.driverClassName vote exception, Please check!",e);
         }
         dataSource.setJdbcUrl(environment.getRequiredProperty("jdbc.url"));
         dataSource.setUser(environment.getRequiredProperty("jdbc.username"));

@@ -2,6 +2,10 @@ package com.huangtianci.myframeprototype.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+/**
+ * @author Huang Tianci
+ * Web项目的初始化器类
+ */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {

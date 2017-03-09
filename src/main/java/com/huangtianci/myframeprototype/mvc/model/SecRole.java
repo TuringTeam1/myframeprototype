@@ -10,12 +10,16 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Huang Tianci
+ * 角色实体类
+ */
 @Entity
-@Table
+@Table(name = "sec_role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role implements Serializable {
+public class SecRole implements Serializable {
 
     @Id
     @GeneratedValue(generator = "generator")
@@ -28,14 +32,14 @@ public class Role implements Serializable {
     private String description;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "user_role",
+    @JoinTable(name = "sec_user_role",
             joinColumns = {@JoinColumn(name = "roleId", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "userName", referencedColumnName = "userName")})
-    private List<User> userList;
+    private List<SecUser> userList;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "role_permission",
+    @JoinTable(name = "sec_role_permission",
             joinColumns = {@JoinColumn(name = "roleId", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "permissionId", referencedColumnName = "id")})
-    private List<Permission> permissionList;
+    private List<SecPermission> permissionList;
 }

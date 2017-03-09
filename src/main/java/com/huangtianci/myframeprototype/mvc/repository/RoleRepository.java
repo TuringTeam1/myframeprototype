@@ -1,7 +1,11 @@
 package com.huangtianci.myframeprototype.mvc.repository;
 
-import com.huangtianci.myframeprototype.mvc.model.Role;
+import com.huangtianci.myframeprototype.mvc.model.SecRole;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RoleRepository extends CrudRepository<Role,Long> {
+/**
+ * @author Huang Tianci
+ * 角色 repository
+ */
+public interface RoleRepository extends CrudRepository<SecRole,Long> {
 }

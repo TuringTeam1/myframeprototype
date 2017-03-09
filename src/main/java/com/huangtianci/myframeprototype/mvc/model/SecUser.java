@@ -8,12 +8,16 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Huang Tianci
+ * 用户实体类
+ */
 @Entity
-@Table
+@Table(name = "sec_user")
 @ToString(exclude = {})
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
+public class SecUser implements Serializable {
 
     @Id
     @NotNull
@@ -42,7 +46,8 @@ public class User implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "userList", fetch = FetchType.LAZY)
     @Setter
-    private List<Role> roleList;
+    @Getter
+    private List<SecRole> roleList;
 
     @JsonIgnore    //生成json不包含此字段,必须打在Getter上面
     public String getPassWord() {

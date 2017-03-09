@@ -6,11 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * @author Huang Tianci
  * 根据角色判断权限
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuthByRole {
-    //AuthorityType[] AuthorityType();
     boolean validate() default true;
 }

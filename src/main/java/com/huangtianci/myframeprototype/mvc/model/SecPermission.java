@@ -10,12 +10,16 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
-@Table
+/**
+ * @author Huang Tianci
+ * 权限实体类
+ */
 @Entity
+@Table(name = "sec_permission")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Permission implements Serializable {
+public class SecPermission implements Serializable {
 
     @Id
     @GeneratedValue(generator = "generator")
@@ -37,13 +41,13 @@ public class Permission implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parentId")
-    private Permission parent;
+    private SecPermission parent;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Permission> childrenList;
+    private List<SecPermission> childrenList;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "permissionList")
-    private List<Role> roleList;
+    private List<SecRole> secRoleList;
 
 
 }
