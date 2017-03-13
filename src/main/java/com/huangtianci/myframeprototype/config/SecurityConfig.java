@@ -3,6 +3,7 @@ package com.huangtianci.myframeprototype.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -40,9 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
             .and()
             //允许用户进行基于表单的认证,指定登陆页的路径并必须允许所有用户访问我们的登录页
-            .formLogin().loginPage("/login").permitAll()
+            .formLogin().loginPage("/index.html").permitAll()
             .and()
             //允许用户使用HTTP基本验证进行认证
             .httpBasic();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //忽略所有static下的文件，和所有js文件
+        web.ignoring().antMatchers("/static/**","/**.js");
     }
 }
