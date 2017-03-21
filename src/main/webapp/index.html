@@ -5,10 +5,29 @@
     <title>Title</title>
 </head>
 <body>
-    <div ng-controller="helloAngular">
-        <p>{{greeting.text}},Angular!</p>
+    <div ng-controller="helloAngular as ctrl">
+        <!--<button ng-click="ctrl.chaneNotes()">Change Notes</button>
+        <div ng-repeat="note in ctrl.notes1">
+            {{note.$$hashKey}}
+            <span class="label">{{note.label}}</span>
+            <span ng-bind="note.done"></span>
+        </div>
+        <br>
+        <div ng-repeat="note in ctrl.notes2 track by note.id">
+            {{note.$$hashKey}}
+            <span class="label">{{note.label}}</span>
+            <span ng-bind="note.done"></span>
+        </div>-->
+        <table>
+            <tr ng-repeat-start="note in ctrl.notes">
+                <td>{{note.label}}</td>
+            </tr>
+            <tr ng-repeat-end>
+                <td>Done:{{note.done}}</td>
+            </tr>
+        </table>
     </div>
-    <script src="static/js/angular.min.js?t=1"></script>
-    <script src="index.js?t=1"></script>
+    <script src="static/js/angular.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
